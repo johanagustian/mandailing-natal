@@ -1,0 +1,724 @@
+/* Custom properties for colors and fonts */
+:root {
+  --font-family: 'Quicksand', sans-serif;
+  --color-primary: #2e7d32; /* Mandailing Green */
+  --color-secondary: #27ae60;
+  --color-dark: #2c3e50;
+  --color-text: #444;
+  --color-light-text: #555;
+  --color-background-light: #f5f5f5;
+  --color-background-lighter: #f9f9fa;
+  --color-background-white: #ffffff;
+}
+
+/* Global and Utility Styles */
+body {
+  font-family: var(--font-family);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Main Layout */
+main {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+#content {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+aside.sidebar {
+  flex: 1;
+}
+
+/* Navbar Container */
+header.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-background-white);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 9999;
+  transition: top 0.3s ease;
+}
+
+header.navbar-container.hidden {
+  top: -100px;
+}
+
+header.navbar-container .navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header.navbar-container .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header.navbar-container .logo img {
+  width: 50px;
+  height: auto;
+}
+
+header.navbar-container .logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+header.navbar-container .logo-text .kabupaten {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+header.navbar-container .logo-text .nama {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Nav List & Dropdown */
+header.navbar-container .nav-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+header.navbar-container .nav-list li {
+  position: relative;
+}
+
+header.navbar-container .nav-list li a {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: black;
+  transition: all 0.2s ease-in-out;
+}
+
+header.navbar-container .nav-list li:hover > a {
+  background-color: var(--color-primary);
+  color: var(--color-background-white);
+}
+
+header.navbar-container .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-primary);
+  padding: 0.5rem 0;
+  margin: 0;
+  list-style: none;
+  border-radius: 0.5rem;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+header.navbar-container .dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--color-background-white);
+  border-radius: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+header.navbar-container .dropdown-menu li a:hover {
+  background: var(--color-background-white);
+  color: var(--color-primary);
+}
+
+header.navbar-container .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Sections */
+.beranda-section,
+.sejarah-section,
+.wisata-section,
+.kuliner-section,
+.budaya-section {
+  padding: 60px 40px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.beranda-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 50px;
+  background: linear-gradient(to right, #f5f5f5, #e8f0ed);
+  gap: 2rem;
+}
+
+.beranda-content {
+  max-width: 50%;
+}
+
+.beranda-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: var(--color-dark);
+}
+
+.beranda-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--color-light-text);
+}
+
+.beranda-slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.beranda-slideshow img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.beranda-slideshow img.active {
+  opacity: 1;
+}
+
+.btn-explore {
+  padding: 12px 24px;
+  background-color: var(--color-secondary);
+  color: var(--color-background-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.btn-explore:hover {
+  background-color: #219150;
+}
+
+.sejarah-section {
+  background-color: var(--color-background-lighter);
+}
+
+.sejarah-image img {
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.sejarah-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: justify;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.sejarah-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.wisata-section {
+  padding: 60px 40px;
+  background-color: var(--color-background-white);
+}
+
+.wisata-section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--color-dark);
+  text-align: center;
+}
+
+.wisata-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.wisata-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.wisata-text {
+  flex: 1;
+  text-align: justify;
+}
+
+.wisata-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--color-dark);
+}
+
+.wisata-text p {
+  line-height: 1.8;
+  color: var(--color-light-text);
+}
+
+.wisata-image {
+  flex: 1;
+}
+
+.wisata-image img {
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.kuliner-section {
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.kuliner-section .section-title,
+.budaya-section .section-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--color-dark);
+}
+
+.kuliner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.kuliner-card {
+  background: var(--color-background-white);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kuliner-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.kuliner-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.kuliner-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.kuliner-card p {
+  font-size: 0.95rem;
+  color: var(--color-light-text);
+  line-height: 1.6;
+}
+
+.budaya-section {
+  background: var(--color-background-white);
+}
+
+.slider {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide.active {
+  display: flex;
+}
+
+.slide img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.slide p {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--color-background-white);
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.prev {
+  left: 15px;
+}
+.next {
+  right: 15px;
+}
+
+.prev:hover,
+.next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-dark);
+  color: #ecf0f1;
+  padding: 2rem 1rem 1rem;
+  margin-top: 3rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+}
+
+.footer-logo,
+.footer-nav,
+.footer-contact {
+  flex: 1 1 250px;
+}
+
+.footer-logo img {
+  width: 60px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-logo h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.footer-logo p {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+}
+
+.footer-nav h4,
+.footer-contact h4 {
+  margin-bottom: 0.5rem;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-nav ul li {
+  margin-bottom: 0.3rem;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: #ecf0f1;
+  transition: color 0.2s;
+}
+
+.footer-nav ul li a:hover {
+  color: #f39c12;
+}
+
+.footer-contact p {
+  margin: 0.3rem 0;
+}
+
+.footer-contact .social-media a {
+  margin-right: 0.5rem;
+}
+
+.footer-contact .social-media img {
+  width: 20px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s;
+}
+
+.footer-contact .social-media a:hover img {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #7f8c8d;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #bdc3c7;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  background: #f8f9fa;
+  padding: 1.2rem;
+  border-left: 4px solid var(--color-secondary);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 0.95rem;
+  margin-left: 1rem;
+}
+
+.aside-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: 0.3rem;
+}
+
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-list li {
+  margin-bottom: 1rem;
+}
+
+.news-list a {
+  text-decoration: none;
+  color: var(--color-dark);
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.news-list a:hover {
+  color: var(--color-secondary);
+  transform: translateX(5px);
+}
+
+.news-list p {
+  font-size: 0.85rem;
+  color: var(--color-light-text);
+  margin-top: 0.3rem;
+}
+
+/* Social Media Icons */
+.social-media ul {
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.social-media a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-background-white);
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.social-media a:hover {
+  background: #1b5e20;
+  transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 992px) {
+  main {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  aside.sidebar {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .beranda-content{
+    margin-bottom: 2rem;
+    text-align: center; /* Perbaikan: Rata tengah teks beranda di tablet */
+  }
+
+  .beranda-section {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .beranda-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .beranda-content p {
+    font-size: 1.1rem;
+  }
+
+  .sejarah-section h2,
+  .wisata-section h2,
+  .kuliner-section .section-title,
+  .budaya-section .section-title {
+    font-size: 1.8rem;
+  }
+
+  .wisata-item,
+  .wisata-item.reverse {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header.navbar-container .navbar-inner {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  header.navbar-container .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .beranda-section {
+    gap: 1rem;
+  }
+
+  .beranda-content {
+    margin-bottom: 1.8rem;
+  }
+  
+  .beranda-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .beranda-content p {
+    font-size: 1rem;
+  }
+
+  .sejarah-section h2,
+  .wisata-section h2,
+  .kuliner-section .section-title,
+  .budaya-section .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and(max-width: 576px) {
+  .beranda-section {
+    padding: 80px 20px 40px;
+  }
+
+  .beranda-content {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  
+  header.navbar-container .navbar-inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  header.navbar-container .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .kuliner-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sejarah-content,
+  .wisata-text,
+  .slide p {
+    text-align: left;
+  }
+}
